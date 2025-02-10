@@ -15,7 +15,12 @@ server.get("/orders", (request, response) => {
 });
 
 //Add the /neworder code here!
-
+server.post("/neworder", express.json(), (request, response) => {
+  orderData.orders.push(request.body);
+  fs.writeFileSync("orders.json", JSON.stringify(orderData));
+  response.send("Successful request. Created new order.");
+  console.log("Successful request. Created new order");
+});
 //Add the /update/:id code here!
 
 //Add the /delete/:id code here!
